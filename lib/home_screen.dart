@@ -1,5 +1,6 @@
 import 'package:api_model_ex/next_page_screen.dart';
 import 'package:api_model_ex/provider.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -9,9 +10,19 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  String response;
+
+  void getData(){
+    Provider.of<ProviderClass>(context).getData();
+      if(Provider.of<ProviderClass>(context).getResponse.length>0){
+        print(Provider.of<ProviderClass>(context).getResponse.length);
+        Provider.of<ProviderClass>(context).passDataToModel();
+      }
+  }
+
   @override
   Widget build(BuildContext context) {
-    Provider.of<ProviderClass>(context).getData();
+    getData();
     return Scaffold(
       appBar: AppBar(
         title: Text('Messi'),
